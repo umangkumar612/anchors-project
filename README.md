@@ -49,8 +49,8 @@ npm install
 Create environment files:
 
 ```bash
-cp backend/.env.example backend/.env
-cp frontend/.env.example frontend/.env
+cp backend/.env backend/.env
+cp frontend/.env frontend/.env
 ```
 
 Update `backend/.env`:

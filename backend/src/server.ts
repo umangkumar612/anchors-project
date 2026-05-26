@@ -17,8 +17,8 @@ async function bootstrap() {
   );
   await seedDemoData();
 
-  const server = app.listen(Number(env.port), () => {
-    console.log(`API listening on http://localhost:${env.port}`);
+  const server = app.listen(Number(env.port), "0.0.0.0", () => {
+    console.log(`API listening on port ${env.port}`);
   });
 
   server.on('error', (error) => {

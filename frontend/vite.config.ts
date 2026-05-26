@@ -6,12 +6,12 @@ export default defineConfig({
 
   server: {
     host: '0.0.0.0',
-    allowedHosts: true
+    allowedHosts: ['forum-umang-anchors-3383.up.railway.app']
   },
 
   preview: {
     host: '0.0.0.0',
     port: 3000,
-    allowedHosts: true
+    allowedHosts: ['forum-umang-anchors-3383.up.railway.app']
   }
 })

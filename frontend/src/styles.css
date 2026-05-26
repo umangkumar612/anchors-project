@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-[#eef4f3] text-slate-950 antialiased;
+  background-image:
+    radial-gradient(circle at top left, rgba(20, 184, 166, 0.24), transparent 30rem),
+    radial-gradient(circle at 88% 8%, rgba(244, 114, 182, 0.18), transparent 24rem),
+    radial-gradient(circle at 18% 90%, rgba(251, 191, 36, 0.16), transparent 22rem),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.05), transparent 44%);
+  min-height: 100vh;
+}
+
+.dark body {
+  @apply bg-slate-950 text-slate-100;
+  background-image:
+    radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 28rem),
+    radial-gradient(circle at 88% 8%, rgba(244, 114, 182, 0.14), transparent 24rem),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
+}
+
+input,
+textarea {
+  @apply w-full rounded-lg border border-slate-200 bg-white/90 px-3 py-2.5 text-sm outline-none transition placeholder:text-slate-400 focus:border-teal-600 focus:ring-4 focus:ring-teal-100;
+}
+
+.dark input,
+.dark textarea {
+  @apply border-slate-700 bg-slate-900/90 text-slate-100 placeholder:text-slate-500 focus:border-teal-400 focus:ring-teal-950;
+}
+
+.dark .bg-white,
+.dark .bg-white\/70,
+.dark .bg-white\/75,
+.dark .bg-white\/80,
+.dark .bg-white\/85,
+.dark .bg-white\/90 {
+  background-color: rgb(15 23 42 / 0.9);
+}
+
+.dark .bg-slate-50\/70,
+.dark .bg-slate-50,
+.dark .bg-slate-100 {
+  background-color: rgb(30 41 59 / 0.8);
+}
+
+.dark .border-white\/70,
+.dark .border-white\/80,
+.dark .border-slate-100,
+.dark .border-slate-200,
+.dark .border-slate-300 {
+  border-color: rgb(51 65 85 / 0.9);
+}
+
+.dark .text-slate-950,
+.dark .text-slate-900,
+.dark .text-slate-800,
+.dark .text-slate-700 {
+  color: rgb(248 250 252);
+}
+
+.dark .text-slate-600,
+.dark .text-slate-500 {
+  color: rgb(203 213 225);
+}
+
+.dark .shadow-slate-900\/5,
+.dark .shadow-slate-900\/10,
+.dark .shadow-slate-900\/15 {
+  --tw-shadow-color: rgb(0 0 0 / 0.35);
+}
+
+button {
+  @apply transition;
+}
+
+::selection {
+  @apply bg-teal-200 text-slate-950;
+}

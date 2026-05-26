@@ -1,177 +1,169 @@
-# MERN Threaded Forum
+# ThreadNest – MERN Threaded Discussion Forum
 
-Production-style threaded discussion forum built with MongoDB, Express, React, Node.js, Tailwind CSS, and TypeScript.
+ThreadNest is a full-stack MERN application that allows users to create discussion threads, reply with deeply nested comments, and earn dynamic credits based on discussion depth. The project demonstrates recursive comment handling, authentication, REST API development, and production deployment.
 
-## Features
+---
 
-- Signup and login with JWT authentication
-- Password hashing with `bcryptjs`
-- Protected dashboard route
-- Newest-first public post feed
-- Single post pages with recursive unlimited-depth comments
-- Soft-delete comments as `[deleted]`
-- OP credit awards based on comment depth
-- Credit configuration stored in MongoDB via `CreditConfig`
-- Deleting a comment subtracts exactly the credit originally awarded
+# 🚀 Live Demo
 
-## Project Structure
+Frontend: https://peaceful-daifuku-9166fa.netlify.app
 
-```txt
-backend/
-  src/
-    config/
-    controllers/
-    middleware/
-    models/
-    routes/
-    utils/
-frontend/
-  src/
-    components/
-    context/
-    pages/
-    services/
-```
+Backend: https://anchors-project-production-7f25.up.railway.app
 
-## Setup
+---
 
-Requirements:
+# 📌 Features
 
-- Node.js 20+
-- MongoDB running locally or a MongoDB Atlas connection string
+- User Signup & Login Authentication
+- JWT-based Secure Authentication
+- Create Discussion Threads
+- Nested Comment & Reply System
+- Dynamic Credit Calculation
+- Responsive Modern UI
+- Dark/Light Theme Support
+- Protected Routes
+- MongoDB Atlas Integration
+- RESTful API Architecture
+- Full Deployment on Netlify & Railway
 
-Install dependencies from the root:
+---
 
-```bash
-npm install
-```
+# 🛠️ Tech Stack
 
-Create environment files:
+## Frontend
+- React.js
+- TypeScript
+- Vite
+- Axios
+- React Router DOM
+- Tailwind CSS
 
-```bash
-cp backend/.env backend/.env
-cp frontend/.env frontend/.env
-```
-
-Update `backend/.env`:
-
-```env
-PORT=5000
-MONGODB_URI=mongodb://127.0.0.1:27017/threaded-forum
-JWT_SECRET=replace-with-a-long-random-secret
-JWT_EXPIRES_IN=7d
-CLIENT_URL=http://localhost:5173
-```
-
-Update `frontend/.env` if needed:
-
-```env
-VITE_API_URL=http://localhost:5000/api
-```
-
-Run both apps:
-
-```bash
-npm run dev
-```
-
-Frontend: `http://localhost:5173`
-
-Backend health check: `http://localhost:5000/api/health`
-
-## API Routes
-
-Auth:
-
-- `POST /api/auth/signup`
-- `POST /api/auth/login`
-- `GET /api/auth/me`
-
-Posts:
-
-- `GET /api/posts`
-- `GET /api/posts/:id`
-- `GET /api/posts/mine`
-- `POST /api/posts`
-- `POST /api/posts/:postId/comments`
-
-Comments:
-
-- `DELETE /api/comments/:id`
-
-Config:
-
-- `GET /api/config/credits`
-
-## MongoDB Schemas
-
-`User`
-
-- `name`
-- `email`
-- `password`
-- `totalCredits`
-
-`Post`
-
-- `title`
-- `body`
-- `author`
-- `createdAt`
-
-`Comment`
-
-- `content`
-- `author`
-- `post`
-- `parentComment`
-- `depth`
-- `creditAwarded`
-- `isDeleted`
-- `createdAt`
-
-`CreditConfig`
-
-- `baseCredit`
-- `incrementValue`
-
-The default credit config is inserted on server boot when no config exists:
-
-```txt
-baseCredit = 1
-incrementValue = 2
-```
-
-Credit formula:
-
-```txt
-credit = baseCredit + (depth - 1) * incrementValue
-```
-
-## Build
-
-```bash
-npm run build
-```
+## Backend
+- Node.js
+- Express.js
+- MongoDB Atlas
+- Mongoose
+- JWT Authentication
+- bcryptjs
 
 ## Deployment
+- Netlify (Frontend)
+- Railway (Backend)
 
-### Backend on Railway
+---
 
-1. Create a Railway project from this repository.
-2. Set the service root to `backend`.
-3. Add environment variables from `backend/.env.example`.
-4. Set `MONGODB_URI` to MongoDB Atlas or Railway MongoDB.
-5. Set `CLIENT_URL` to the deployed Vercel frontend URL.
-6. Build command: `npm run build`
-7. Start command: `npm start`
+# 📂 Project Structure
 
-### Frontend on Vercel
+```bash
+anchors-project/
+│
+├── frontend/
+│   ├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   └── context/
+│
+├── backend/
+│   ├── src/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   └── config/
+│
+└── README.md
+⚙️ Installation & Setup
+1️⃣ Clone Repository
+git clone https://github.com/umangkumar612/anchors-project.git
+cd anchors-project
+🔧 Backend Setup
+cd backend
+Install Dependencies
+npm install
+Create .env File
+PORT=5000
+MONGODB_URI=your_mongodb_atlas_url
+JWT_SECRET=your_secret_key
+CLIENT_URL=http://localhost:5173
+Run Backend
+npm run dev
+💻 Frontend Setup
+cd frontend
+Install Dependencies
+npm install
+Create .env File
+VITE_API_URL=http://localhost:5000/api
+Run Frontend
+npm run dev
+🧠 Credit System Logic
 
-1. Import the repository in Vercel.
-2. Set the project root to `frontend`.
-3. Add `VITE_API_URL=https://your-railway-api-url/api`.
-4. Build command: `npm run build`
-5. Output directory: `dist`
+The Original Poster (OP) earns credits whenever users interact with their thread.
 
-After deployment, update Railway `CLIENT_URL` to the final Vercel URL and redeploy the backend.
+Reply Depth	Credits Earned
+Depth 1	+1 Credit
+Depth 2	+3 Credits
+Depth 3	+5 Credits
+Formula
+credit = 1 + (depth - 1) * 2;
+🔐 Authentication
+JWT Token Authentication
+Password Hashing using bcryptjs
+Protected Routes
+User Session Persistence
+🌐 API Endpoints
+Auth Routes
+Method	Endpoint
+POST	/api/auth/signup
+POST	/api/auth/login
+GET	/api/auth/me
+Post Routes
+Method	Endpoint
+GET	/api/posts
+POST	/api/posts
+GET	/api/posts/mine
+Comment Routes
+Method	Endpoint
+POST	/api/comments
+GET	/api/comments/:postId
+🚀 Deployment
+Frontend Deployment
+Platform: Netlify
+Backend Deployment
+Platform: Railway
+Database
+MongoDB Atlas
+📸 Screenshots
+Login Page
+Dashboard
+Thread Creation
+Nested Replies
+Credit System
+
+(Add screenshots here)
+
+🎯 Key Learnings
+Recursive Nested Comment Handling
+MERN Stack Deployment
+JWT Authentication
+MongoDB Atlas Integration
+Environment Variable Management
+REST API Design
+Full Stack Debugging
+📈 Future Improvements
+Real-time Updates using Socket.io
+Notification System
+Like & Reaction Feature
+Edit/Delete Comments
+Infinite Nested Replies
+User Avatars
+Search & Filter Discussions
+👨‍💻 Author
+
+Umang Kumar
+
+GitHub: https://github.com/umangkumar612
+Portfolio: https://silly-mousse-15f111.netlify.app/
+⭐ Conclusion
+
+ThreadNest is a scalable MERN stack discussion platform that demonstrates full-stack development skills including authentication, nested recursive data handling, deployment, database integration, and responsive UI development.

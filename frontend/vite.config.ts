@@ -5,6 +5,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',
-    allowedHosts: ['forum-frontend-production-3383.up.railway.app']
+    allowedHosts: true
   }
 })

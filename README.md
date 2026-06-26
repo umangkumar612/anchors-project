@@ -166,4 +166,4 @@ GitHub: https://github.com/umangkumar612
 Portfolio: https://silly-mousse-15f111.netlify.app/
 ⭐ Conclusion
 
-ThreadNest is a scalable MERN stack discussion platform that demonstrates full-stack development skills including authentication, nested recursive data handling, deployment, database integration, and responsive UI development.
+ThreadNest is a scalable MERN stack discussion platform(Blogify) that demonstrates full-stack development skills including authentication, nested recursive data handling, deployment, database integration, and responsive UI development.
